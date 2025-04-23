@@ -1,0 +1,70 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "Mobius Oracle API",
+    "description": "Simulates recursive M\u00f6bius-style quantum collapses using Qiskit to estimate entropy and convergence.",
+    "version": "1.0.0"
+  },
+  "servers": [
+    {
+      "url": "https://tools.aetherdomain.com"
+    }
+  ],
+  "paths": {
+    "/simulate": {
+      "post": {
+        "summary": "Run M\u00f6bius Quantum Simulation",
+        "operationId": "simulateMobius",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "passes": {
+                    "type": "integer",
+                    "description": "Number of recursive M\u00f6bius passes to simulate",
+                    "default": 5
+                  }
+                },
+                "required": [
+                  "passes"
+                ]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Simulation results including entropy and quantum measurement data.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "pass": {
+                        "type": "integer"
+                      },
+                      "counts": {
+                        "type": "object"
+                      },
+                      "entropy": {
+                        "type": "number"
+                      },
+                      "interpretation": {
+                        "type": "string"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
